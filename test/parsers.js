@@ -18,7 +18,7 @@ describe('Parsers', function () {
 
         it('should allow parsing process name', function () {
             linux = parserFactories.linux({
-              parseName: true,
+                parseName: true,
             });
 
             linux.call(null, line, function (data) {
@@ -80,7 +80,7 @@ describe('Parsers', function () {
             });
         });
 
-        it('should support udp', function() {
+        it('should support udp', function () {
             line = 'udp    19200      0 127.0.0.53:53           0.0.0.0:*                 7777/sshd: user';
 
             linux.call(null, line, function (data) {
@@ -106,6 +106,7 @@ describe('Parsers', function () {
     describe('darwin', function () {
         beforeEach(function () {
             line = 'tcp4       0      0  10.59.107.171.55383    17.146.1.14.443        ESTABLISHED 262144 131400    312      0';
+            // line = 'tcp46      0      0  *.3000                 *.*                    LISTEN      131072 131072  79862      0 0x0100 0x00000106'
         });
 
         it('should parse the correct fields', function () {
