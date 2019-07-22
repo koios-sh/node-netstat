@@ -44,7 +44,7 @@ function resetSpawnStub() {
 var lineHandler = null;
 var proc = null, proc2 = null;
 
-describe('Activators', function () {    
+describe('Activators', function () {
     describe('asynchronous', function () {
         beforeEach(function () {
             lineHandler = null;
@@ -108,7 +108,7 @@ describe('Activators', function () {
         it('should call the line handler for each line present in the child processes stdout', function () {
             lineHandler = sinon.spy();
 
-            activators.sync('', '', makeLineHandler, function () {});
+            activators.sync('', '', makeLineHandler, function () { });
 
             expect(lineHandler).to.have.callCount(data.length);
         });
@@ -139,7 +139,7 @@ describe('Activators', function () {
         beforeEach(function () {
             lineHandler = null;
             activator = function (cmd, args, makeLineHandler, done) {
-                var handler = makeLineHandler(function () {});
+                var handler = makeLineHandler(function () { });
                 handler();
                 done();
             };
@@ -149,12 +149,14 @@ describe('Activators', function () {
             lineHandler = sinon.stub();
             lineHandler.onCall(3).returns(false);
 
-            activators.continuous(activator, { cmd: '', args: '', makeLineHandler, done: function () {
-                // sinon's onCall() is 0-based index, so call 3 = 4
-                expect(lineHandler).to.have.callCount(4);
+            activators.continuous(activator, {
+                cmd: '', args: '', makeLineHandler, done: function () {
+                    // sinon's onCall() is 0-based index, so call 3 = 4
+                    expect(lineHandler).to.have.callCount(4);
 
-                done();
-            } }, { sync: false });
+                    done();
+                }
+            }, { sync: false });
         });
 
 
